@@ -50,16 +50,16 @@ export default async function Home() {
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="flex-1 p-6 lg:p-8">
-        <div className="mx-auto max-w-6xl space-y-6">
-          <div>
-            <h1 className="text-2xl font-semibold">🏗️ Leads — Incorporadoras</h1>
-            <p className="text-sm text-zinc-600">
+      <main className="flex-1 p-8 lg:p-10">
+        <div className="mx-auto max-w-7xl space-y-10 animate-fadeIn">
+          <div className="space-y-3">
+            <h1 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 dark:from-blue-400 dark:via-cyan-400 dark:to-teal-400 bg-clip-text text-transparent">🏗️ Leads — Incorporadoras</h1>
+            <p className="text-base text-slate-600 dark:text-slate-400 font-medium leading-relaxed max-w-2xl">
               Base atualizada da Receita Federal · CNAE 4110-7/00 · Enriquecida com lead score, grupos econômicos e detecção de SPEs.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:gap-5">
             <Stat label="Total na base" value={s.total.toLocaleString("pt-BR")} />
             <Stat label="Qualificados" value={s.ativas.toLocaleString("pt-BR")} />
             <Stat label="Capital total" value={formatBRL(s.capitalTotal, { compact: true })} />
@@ -69,10 +69,10 @@ export default async function Home() {
             <Stat label="Capital médio" value={formatBRL(s.capitalMedio, { compact: true })} />
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-lg border bg-white p-4">
-              <h2 className="text-sm font-semibold text-zinc-700">Atalhos</h2>
-              <div className="mt-3 grid grid-cols-2 gap-2">
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 shadow-sm hover:shadow-md hover:shadow-blue-500/10 transition-all duration-300">
+              <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">⚡ Atalhos rápidos</h2>
+              <div className="mt-5 grid grid-cols-2 gap-3">
                 <ShortcutLink href="/v/top-100" emoji="🔥" label="Top 100" />
                 <ShortcutLink href="/v/grandes" emoji="💰" label="Grandes" />
                 <ShortcutLink href="/v/recem-criadas" emoji="🆕" label="Recém-criadas" />
@@ -82,25 +82,22 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="rounded-lg border bg-white p-4">
-              <h2 className="text-sm font-semibold text-zinc-700">Top 10 estados por capital</h2>
-              <table className="mt-3 w-full text-sm">
-                <tbody>
+            <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 shadow-sm hover:shadow-md hover:shadow-blue-500/10 transition-all duration-300">
+              <h2 className="text-base font-bold text-slate-900 dark:text-slate-100">🗺️ Top 5 estados</h2>
+              <table className="mt-5 w-full text-sm">
+                <tbody className="divide-y divide-slate-200/30 dark:divide-slate-700/20">
                   {s.ufs.map((u) => (
-                    <tr key={u.uf} className="border-b border-zinc-100 last:border-0">
-                      <td className="py-1.5 font-medium">
+                    <tr key={u.uf} className="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group">
+                      <td className="py-2.5 font-bold">
                         <Link
                           href={`/v/uf-${u.uf.toLowerCase()}`}
-                          className="hover:underline"
+                          className="text-blue-600 dark:text-cyan-400 hover:text-blue-700 dark:hover:text-cyan-300 transition-colors"
                         >
                           {u.uf}
                         </Link>
                       </td>
-                      <td className="py-1.5 text-right tabular-nums text-zinc-600">
+                      <td className="py-2.5 text-right tabular-nums text-slate-700 dark:text-slate-300 font-semibold">
                         {Number(u.n).toLocaleString("pt-BR")}
-                      </td>
-                      <td className="py-1.5 text-right tabular-nums text-zinc-700">
-                        R$ {Number(u.cap_bi).toLocaleString("pt-BR")}B
                       </td>
                     </tr>
                   ))}
@@ -116,9 +113,9 @@ export default async function Home() {
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border bg-white p-4">
-      <p className="text-xs text-zinc-500">{label}</p>
-      <p className="mt-0.5 text-xl font-semibold tabular-nums">{value}</p>
+    <div className="group rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-4 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-blue-500/10 dark:hover:shadow-blue-500/5 hover:-translate-y-1">
+      <p className="text-xs font-medium tracking-wide text-slate-500 dark:text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors">{label}</p>
+      <p className="mt-2 text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent tabular-nums">{value}</p>
     </div>
   );
 }
@@ -127,10 +124,10 @@ function ShortcutLink({ href, emoji, label }: { href: string; emoji: string; lab
   return (
     <Link
       href={href}
-      className="flex items-center gap-2 rounded-md border bg-zinc-50 px-3 py-2 text-sm hover:bg-zinc-100"
+      className="group flex items-center justify-center gap-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 px-3 py-3 text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-blue-900/40 transition-all duration-200 hover:text-blue-600 dark:hover:text-cyan-400"
     >
-      <span>{emoji}</span>
-      <span className="font-medium">{label}</span>
+      <span className="text-lg group-hover:scale-125 transition-transform">{emoji}</span>
+      <span>{label}</span>
     </Link>
   );
 }

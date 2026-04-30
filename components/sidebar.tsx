@@ -45,25 +45,27 @@ export function Sidebar() {
   }
 
   return (
-    <aside className="w-64 shrink-0 border-r border-zinc-200 bg-white p-4 hidden lg:block">
-      <Link href="/" className="block px-2 pb-4">
-        <h1 className="text-base font-semibold tracking-tight">🏗️ Leads</h1>
-        <p className="text-xs text-zinc-500">Incorporadoras BR</p>
+    <aside className="w-64 shrink-0 border-r border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 p-6 hidden lg:block transition-colors duration-300">
+      <Link href="/" className="block px-3 py-2 mb-8 rounded-xl bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/40 dark:hover:bg-blue-900/60 transition-all duration-300 group">
+        <h1 className="text-lg font-bold tracking-tight bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">🏗️ Leads</h1>
+        <p className="text-xs text-slate-500 dark:text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors">Incorporadoras BR</p>
       </Link>
 
-      <nav className="space-y-1">
+      <nav className="space-y-2">
         {standalone.map((it) => (
           <NavItem key={it.href} item={it} active={path === it.href} />
         ))}
 
         {Object.entries(groups).map(([group, items]) => (
-          <div key={group} className="pt-4">
-            <p className="px-2 pb-1 text-[11px] font-medium uppercase tracking-wider text-zinc-400">
+          <div key={group} className="pt-6">
+            <p className="px-3 pb-3 text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 opacity-75">
               {group}
             </p>
-            {items.map((it) => (
-              <NavItem key={it.href} item={it} active={path === it.href} />
-            ))}
+            <div className="space-y-1">
+              {items.map((it) => (
+                <NavItem key={it.href} item={it} active={path === it.href} />
+              ))}
+            </div>
           </div>
         ))}
       </nav>
@@ -77,14 +79,15 @@ function NavItem({ item, active }: { item: Item; active: boolean }) {
     <Link
       href={item.href}
       className={cn(
-        "flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors",
+        "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200 relative overflow-hidden group",
         active
-          ? "bg-zinc-100 text-zinc-900 font-medium"
-          : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900",
+          ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/25 dark:shadow-blue-500/15"
+          : "text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100",
       )}
     >
-      <Icon className="h-4 w-4 shrink-0" />
+      <Icon className={cn("h-4.5 w-4.5 shrink-0 transition-transform duration-200", active && "group-hover:scale-110")} />
       <span className="truncate">{item.label}</span>
+      {active && <div className="absolute inset-0 bg-white/10 group-hover:bg-white/20 transition-all" />}
     </Link>
   );
 }

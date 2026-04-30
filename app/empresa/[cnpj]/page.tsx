@@ -36,37 +36,37 @@ export default async function EmpresaPage({
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="flex-1 p-6 lg:p-8">
-        <div className="mx-auto max-w-6xl space-y-5">
-          <div className="flex items-start gap-4">
+      <main className="flex-1 p-8 lg:p-10">
+        <div className="mx-auto max-w-7xl space-y-8 animate-fadeIn">
+          <div className="flex items-start gap-6">
             <span
               className={cn(
-                "inline-flex h-12 min-w-14 items-center justify-center rounded-md border px-3 text-lg font-semibold tabular-nums",
+                "inline-flex h-16 min-w-16 items-center justify-center rounded-xl border px-4 text-2xl font-bold tabular-nums shadow-lg transition-all duration-200",
                 scoreColor(empresa.lead_score),
               )}
             >
               {Math.round(empresa.lead_score)}
             </span>
             <div className="flex-1">
-              <h1 className="text-2xl font-semibold leading-tight">
+              <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-slate-100 leading-tight">
                 {empresa.razao_social}
               </h1>
               {empresa.nome_fantasia && (
-                <p className="text-sm text-zinc-500">{empresa.nome_fantasia}</p>
+                <p className="text-base text-slate-600 dark:text-slate-400 mt-1 font-medium">{empresa.nome_fantasia}</p>
               )}
-              <p className="mt-1 font-mono text-xs text-zinc-500">
+              <p className="mt-3 font-mono text-sm text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-2 w-fit">
                 {formatCNPJ(empresa.cnpj)} · {empresa.matriz_filial}
               </p>
               {empresa.lead_score_motivos && (
-                <p className="mt-2 text-sm text-zinc-700">
-                  <span className="font-medium">Motivos: </span>
+                <p className="mt-3 text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+                  <span className="font-bold text-blue-600 dark:text-cyan-400">Motivos: </span>
                   {empresa.lead_score_motivos}
                 </p>
               )}
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             <Card title="📊 Dados">
               <Row label="Capital social" value={formatBRL(empresa.capital_social)} />
               <Row label="Idade" value={empresa.idade_anos ? `${empresa.idade_anos.toFixed(1)} anos` : "—"} />
@@ -222,20 +222,20 @@ export default async function EmpresaPage({
 
 function Card({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="rounded-lg border bg-white p-5">
-      <h2 className="mb-3 text-sm font-semibold text-zinc-700">{title}</h2>
-      <div className="space-y-1.5">{children}</div>
+    <div className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-blue-500/10">
+      <h2 className="mb-4 text-base font-bold text-slate-900 dark:text-slate-100">{title}</h2>
+      <div className="space-y-3">{children}</div>
     </div>
   );
 }
 
 function Row({ label, value, extra }: { label: string; value: string; extra?: React.ReactNode }) {
   return (
-    <div className="flex items-baseline justify-between gap-3 text-sm">
-      <span className="text-zinc-500">{label}</span>
-      <span className="text-right font-medium text-zinc-900">
+    <div className="flex items-baseline justify-between gap-4 text-sm py-2 border-b border-slate-200/30 dark:border-slate-700/20 last:border-0">
+      <span className="text-slate-600 dark:text-slate-400 font-medium">{label}</span>
+      <span className="text-right font-semibold text-slate-900 dark:text-slate-100">
         {value}
-        {extra && <span className="ml-2 text-xs">{extra}</span>}
+        {extra && <span className="ml-3 text-xs text-blue-600 dark:text-cyan-400">{extra}</span>}
       </span>
     </div>
   );
@@ -247,7 +247,7 @@ function Pill({ href, children }: { href: string; children: React.ReactNode }) {
       href={href}
       target="_blank"
       rel="noreferrer noopener"
-      className="rounded-full border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-700 hover:bg-zinc-50"
+      className="inline-flex items-center rounded-full border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 transition-all duration-200 hover:scale-105 active:scale-95"
     >
       {children}
     </a>

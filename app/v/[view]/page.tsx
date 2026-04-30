@@ -36,11 +36,11 @@ export default async function ViewPage({
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="flex-1 p-6 lg:p-8">
-        <div className="mx-auto max-w-6xl space-y-5">
-          <div>
-            <h1 className="text-2xl font-semibold">{def.title}</h1>
-            <p className="mt-1 text-sm text-zinc-600">{def.description}</p>
+      <main className="flex-1 p-8 lg:p-10">
+        <div className="mx-auto max-w-7xl space-y-8 animate-fadeIn">
+          <div className="space-y-2">
+            <h1 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-slate-100">{def.title}</h1>
+            <p className="text-base text-slate-600 dark:text-slate-400 font-medium leading-relaxed max-w-2xl">{def.description}</p>
           </div>
 
           <SearchBar />
