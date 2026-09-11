@@ -1,0 +1,33 @@
+{
+  "name": "awardness",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Motor de conteudo para posicionamento de product engineer no LinkedIn: estrategia JTBD, sistema de copy e estudio de motion em Remotion.",
+  "license": "UNLICENSED",
+  "scripts": {
+    "studio": "remotion studio",
+    "typecheck": "tsc --noEmit",
+    "render": "remotion render",
+    "still": "remotion still",
+    "build:all": "node scripts/render-all.mjs"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.523",
+    "@remotion/cli": "4.0.523",
+    "@remotion/google-fonts": "4.0.523",
+    "@remotion/noise": "4.0.523",
+    "@remotion/paths": "4.0.523",
+    "@remotion/renderer": "4.0.523",
+    "@remotion/shapes": "4.0.523",
+    "@remotion/transitions": "4.0.523",
+    "@remotion/zod-types": "4.0.523",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "remotion": "4.0.523",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "typescript": "^5.9.3"
+  }
+}
