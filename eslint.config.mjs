@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Projeto autonomo de conteudo: tem package.json, tsconfig e toolchain
+    // proprios. Nao faz parte do build deste app.
+    "awardness/**",
   ]),
 ]);
 
