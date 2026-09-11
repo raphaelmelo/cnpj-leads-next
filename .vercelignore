@@ -1,0 +1,4 @@
+# Projeto autonomo de criacao de conteudo. Tem package.json proprio, o que faz
+# a Vercel tratar o repositorio como monorepo; e nao tem nada a ver com o
+# deploy deste app. Fora do upload de deploy.
+awardness/
